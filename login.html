@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Sign Up - Secure Learn</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>SecureLearn</h1>
+            <h3>CyberSecurity Training Platform </h3>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html" class="active">Login/Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Login/Sign Up Section -->
+    <section id="login-signup">
+        <div class="container">
+            <h2>Login / Sign Up</h2>
+            <div class="form-container">
+                <!-- Login Form -->
+                <div class="form-box">
+                    <h3>Login</h3>
+                    <form id="login-form">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" name="login-email" required>
+                        
+                        <label for="login-password">Password:</label>
+                        <input type="password" id="login-password" name="login-password" required>
+                        
+                        <button type="submit" class="btn">Login</button>
+                        <p id="login-error" class="error-message"></p>
+                    </form>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div class="form-box">
+                    <h3>Sign Up</h3>
+                    <form id="signup-form">
+                        <label for="signup-name">Full Name:</label>
+                        <input type="text" id="signup-name" name="signup-name" required>
+                        
+                        <label for="signup-email">Email:</label>
+                        <input type="email" id="signup-email" name="signup-email" required>
+                        
+                        <label for="signup-password">Password:</label>
+                        <input type="password" id="signup-password" name="signup-password" required>
+                        
+                        <label for="confirm-password">Confirm Password:</label>
+                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        
+                        <button type="submit" class="btn">Sign Up</button>
+                        <p id="signup-error" class="error-message"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Secure Learn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Firebase Authentication -->
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+        apiKey: "AIzaSyB2raes3hCVilddJAwI7EgsuU3bg5Xt1B8",
+  authDomain: "learn-c1d70.firebaseapp.com",
+  projectId: "learn-c1d70",
+  storageBucket: "learn-c1d70.firebasestorage.app",
+  messagingSenderId: "982097709440",
+  appId: "1:982097709440:web:53b3fd6aacbd839d621965"
+};
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+
+        // Login Form Submission
+        document.getElementById("login-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+
+            // Firebase login
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Login successful
+                    alert("Login successful!");
+                    window.location.href = "my-account.html"; // Redirect to account page
+                })
+                .catch((error) => {
+                    // Handle errors
+                    document.getElementById("login-error").textContent = error.message;
+                });
+        });
+
+        // Sign Up Form Submission
+        document.getElementById("signup-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = document.getElementById("signup-email").value;
+            const password = document.getElementById("signup-password").value;
+            const confirmPassword = document.getElementById("confirm-password").value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                document.getElementById("signup-error").textContent = "Passwords do not match.";
+                return;
+            }
+
+            // Firebase signup
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signup successful
+                    alert("Signup successful!");
+                    window.location.href = "my-account.html"; // Redirect to account page
+                })
+                .catch((error) => {
+                    // Handle errors
+                    document.getElementById("signup-error").textContent = error.message;
+                });
+        });
+    </script>
+</body>
+</html>

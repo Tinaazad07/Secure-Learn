@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethical Hacking - Secure Learn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>SecureLearn</h1>
+            <h3>CyberSecurity Training Platform </h3>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login/Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Ethical Hacking Course Content -->
+    <section id="course-content">
+        <div class="container">
+            <h2>Ethical Hacking</h2>
+            <p>Welcome to the Ethical Hacking course! In this course, you'll learn how to identify and fix security vulnerabilities through ethical hacking techniques.</p>
+
+            <!-- Ethical Hacking Quiz Section -->
+            <h3>Test Your Knowledge</h3>
+            <div id="quiz">
+                <!-- Progress Tracker -->
+                <div id="quiz-progress">
+                    <p>Progress: <span id="progress-percentage">0%</span></p>
+                    <div id="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                </div>
+
+                <!-- Quiz Questions -->
+                <div id="quiz-questions"></div>
+
+                <!-- Submit Button -->
+                <button id="submit-quiz" class="btn">Submit Quiz</button>
+
+                <!-- Quiz Result -->
+                <p id="quiz-result"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Secure Learn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Ethical Hacking Quiz -->
+    <script>
+        // Quiz Questions
+        const quizQuestions = [
+            {
+                question: "What is ethical hacking?",
+                options: ["Hacking with permission to improve security", "Hacking for malicious purposes", "Hacking without any purpose"],
+                answer: "Hacking with permission to improve security"
+            },
+            {
+                question: "What is the first step in ethical hacking?",
+                options: ["Reconnaissance", "Exploitation", "Reporting"],
+                answer: "Reconnaissance"
+            },
+            {
+                question: "What is a vulnerability assessment?",
+                options: ["Identifying weaknesses in a system", "Exploiting weaknesses in a system", "Ignoring weaknesses in a system"],
+                answer: "Identifying weaknesses in a system"
+            },
+            {
+                question: "What is penetration testing?",
+                options: ["Simulating an attack to test security", "Ignoring security risks", "Collecting data without permission"],
+                answer: "Simulating an attack to test security"
+            },
+            {
+                question: "What is a common tool used in ethical hacking?",
+                options: ["Nmap", "Microsoft Word", "Google Chrome"],
+                answer: "Nmap"
+            },
+            {
+                question: "What is the purpose of a firewall in ethical hacking?",
+                options: ["To block unauthorized access", "To exploit vulnerabilities", "To collect data"],
+                answer: "To block unauthorized access"
+            },
+            {
+                question: "What is social engineering?",
+                options: ["Manipulating people to gain access to systems", "A type of malware", "A type of firewall"],
+                answer: "Manipulating people to gain access to systems"
+            },
+            {
+                question: "What is the final step in ethical hacking?",
+                options: ["Reporting", "Exploitation", "Reconnaissance"],
+                answer: "Reporting"
+            },
+            {
+                question: "What is a brute force attack?",
+                options: ["A trial-and-error method to guess passwords", "A type of phishing attack", "A type of firewall"],
+                answer: "A trial-and-error method to guess passwords"
+            },
+            {
+                question: "What is the purpose of a honeypot in ethical hacking?",
+                options: ["To lure attackers and study their behavior", "To block all incoming traffic", "To encrypt data"],
+                answer: "To lure attackers and study their behavior"
+            }
+        ];
+
+        // Track user answers
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+
+        // Display Quiz Questions
+        const quizContainer = document.getElementById("quiz-questions");
+        quizQuestions.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
+            questionDiv.innerHTML = `
+                <p><strong>Question ${index + 1}:</strong> ${q.question}</p>
+                ${q.options.map(opt => `
+                    <label>
+                        <input type="radio" name="question${index}" value="${opt}" data-index="${index}">
+                        ${opt}
+                    </label><br>
+                `).join("")}
+                <p class="feedback" id="feedback${index}"></p>
+            `;
+            quizContainer.appendChild(questionDiv);
+        });
+
+        // Add event listeners for radio buttons to provide immediate feedback
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener("change", (e) => {
+                const questionIndex = e.target.dataset.index;
+                const selectedAnswer = e.target.value;
+                const correctAnswer = quizQuestions[questionIndex].answer;
+
+                // Update user answers
+                userAnswers[questionIndex] = selectedAnswer;
+
+                // Provide immediate feedback
+                const feedback = document.getElementById(`feedback${questionIndex}`);
+                if (selectedAnswer === correctAnswer) {
+                    feedback.textContent = "Correct!";
+                    feedback.style.color = "green";
+                } else {
+                    feedback.textContent = "Incorrect!";
+                    feedback.style.color = "red";
+                }
+
+                // Update progress tracker
+                updateProgressTracker();
+            });
+        });
+
+        // Update Progress Tracker
+        function updateProgressTracker() {
+            const answeredQuestions = userAnswers.filter(answer => answer !== null).length;
+            const totalQuestions = quizQuestions.length;
+            const progressPercentage = (answeredQuestions / totalQuestions) * 100;
+
+            // Update progress percentage
+            document.getElementById("progress-percentage").textContent = `${progressPercentage.toFixed(0)}%`;
+
+            // Update progress bar
+            document.getElementById("progress").style.width = `${progressPercentage}%`;
+        }
+
+        // Submit Quiz
+        document.getElementById("submit-quiz").addEventListener("click", () => {
+            let score = 0;
+            quizQuestions.forEach((q, index) => {
+                if (userAnswers[index] === q.answer) {
+                    score++;
+                }
+            });
+
+            const result = `You scored ${score} out of ${quizQuestions.length}!`;
+            document.getElementById("quiz-result").textContent = result;
+
+            // Save progress to localStorage
+            const progressPercentage = (score / quizQuestions.length) * 100;
+            saveProgress("Ethical Hacking", progressPercentage);
+        });
+
+        // Save progress to localStorage
+        function saveProgress(courseName, progressPercentage) {
+            const courseProgress = JSON.parse(localStorage.getItem("courseProgress")) || {};
+            courseProgress[courseName] = progressPercentage;
+            localStorage.setItem("courseProgress", JSON.stringify(courseProgress));
+        }
+    </script>
+</body>
+</html>

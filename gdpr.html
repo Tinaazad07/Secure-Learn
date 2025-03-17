@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law (GDPR) - Secure Learn</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <h1>SecureLearn</h1>
+            <h3>CyberSecurity Training Platform </h3>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="login.html">Login/Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- GDPR Course Content -->
+    <section id="course-content">
+        <div class="container">
+            <h2>Law (GDPR)</h2>
+            <p>Welcome to the GDPR course! In this course, you'll learn about the General Data Protection Regulation (GDPR) and how to comply with data privacy laws.</p>
+
+            <!-- GDPR Quiz Section -->
+            <h3>Test Your Knowledge</h3>
+            <div id="quiz">
+                <!-- Progress Tracker -->
+                <div id="quiz-progress">
+                    <p>Progress: <span id="progress-percentage">0%</span></p>
+                    <div id="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                </div>
+
+                <!-- Quiz Questions -->
+                <div id="quiz-questions"></div>
+
+                <!-- Submit Button -->
+                <button id="submit-quiz" class="btn">Submit Quiz</button>
+
+                <!-- Quiz Result -->
+                <p id="quiz-result"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Secure Learn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for GDPR Quiz -->
+    <script>
+        // Quiz Questions
+        const quizQuestions = [
+            {
+                question: "What does GDPR stand for?",
+                options: ["General Data Protection Regulation", "Global Data Privacy Rule", "General Data Privacy Regulation"],
+                answer: "General Data Protection Regulation"
+            },
+            {
+                question: "What is the primary goal of GDPR?",
+                options: ["To protect personal data and privacy", "To increase data collection", "To reduce cybersecurity risks"],
+                answer: "To protect personal data and privacy"
+            },
+            {
+                question: "Who does GDPR apply to?",
+                options: ["Only EU citizens", "All organizations handling EU citizens' data", "Only government agencies"],
+                answer: "All organizations handling EU citizens' data"
+            },
+            {
+                question: "What is a data subject under GDPR?",
+                options: ["A person whose data is being processed", "A company that collects data", "A government agency"],
+                answer: "A person whose data is being processed"
+            },
+            {
+                question: "What is the maximum fine for GDPR non-compliance?",
+                options: ["€20 million or 4% of global turnover", "€10 million or 2% of global turnover", "€50 million or 10% of global turnover"],
+                answer: "€20 million or 4% of global turnover"
+            },
+            {
+                question: "What is the right to be forgotten under GDPR?",
+                options: ["The right to have personal data deleted", "The right to access personal data", "The right to correct personal data"],
+                answer: "The right to have personal data deleted"
+            },
+            {
+                question: "What is a Data Protection Officer (DPO)?",
+                options: ["A person responsible for GDPR compliance", "A type of software", "A government official"],
+                answer: "A person responsible for GDPR compliance"
+            },
+            {
+                question: "What is the purpose of a Data Protection Impact Assessment (DPIA)?",
+                options: ["To assess the risks of data processing activities", "To collect more data", "To reduce cybersecurity risks"],
+                answer: "To assess the risks of data processing activities"
+            },
+            {
+                question: "What is the role of consent under GDPR?",
+                options: ["It must be freely given, specific, informed, and unambiguous", "It is not required for data processing", "It is only required for sensitive data"],
+                answer: "It must be freely given, specific, informed, and unambiguous"
+            },
+            {
+                question: "What is a data breach under GDPR?",
+                options: ["A security incident leading to accidental or unlawful destruction, loss, or disclosure of data", "A minor technical issue", "A planned data deletion"],
+                answer: "A security incident leading to accidental or unlawful destruction, loss, or disclosure of data"
+            }
+        ];
+
+        // Track user answers
+        let userAnswers = new Array(quizQuestions.length).fill(null);
+
+        // Display Quiz Questions
+        const quizContainer = document.getElementById("quiz-questions");
+        quizQuestions.forEach((q, index) => {
+            const questionDiv = document.createElement("div");
+            questionDiv.classList.add("question");
+            questionDiv.innerHTML = `
+                <p><strong>Question ${index + 1}:</strong> ${q.question}</p>
+                ${q.options.map(opt => `
+                    <label>
+                        <input type="radio" name="question${index}" value="${opt}" data-index="${index}">
+                        ${opt}
+                    </label><br>
+                `).join("")}
+                <p class="feedback" id="feedback${index}"></p>
+            `;
+            quizContainer.appendChild(questionDiv);
+        });
+
+        // Add event listeners for radio buttons to provide immediate feedback
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener("change", (e) => {
+                const questionIndex = e.target.dataset.index;
+                const selectedAnswer = e.target.value;
+                const correctAnswer = quizQuestions[questionIndex].answer;
+
+                // Update user answers
+                userAnswers[questionIndex] = selectedAnswer;
+
+                // Provide immediate feedback
+                const feedback = document.getElementById(`feedback${questionIndex}`);
+                if (selectedAnswer === correctAnswer) {
+                    feedback.textContent = "Correct!";
+                    feedback.style.color = "green";
+                } else {
+                    feedback.textContent = "Incorrect!";
+                    feedback.style.color = "red";
+                }
+
+                // Update progress tracker
+                updateProgressTracker();
+            });
+        });
+
+        // Update Progress Tracker
+        function updateProgressTracker() {
+            const answeredQuestions = userAnswers.filter(answer => answer !== null).length;
+            const totalQuestions = quizQuestions.length;
+            const progressPercentage = (answeredQuestions / totalQuestions) * 100;
+
+            // Update progress percentage
+            document.getElementById("progress-percentage").textContent = `${progressPercentage.toFixed(0)}%`;
+
+            // Update progress bar
+            document.getElementById("progress").style.width = `${progressPercentage}%`;
+        }
+
+        // Submit Quiz
+        document.getElementById("submit-quiz").addEventListener("click", () => {
+            let score = 0;
+            quizQuestions.forEach((q, index) => {
+                if (userAnswers[index] === q.answer) {
+                    score++;
+                }
+            });
+
+            const result = `You scored ${score} out of ${quizQuestions.length}!`;
+            document.getElementById("quiz-result").textContent = result;
+
+            // Save progress to localStorage
+            const progressPercentage = (score / quizQuestions.length) * 100;
+            saveProgress("Law (GDPR)", progressPercentage);
+        });
+
+        // Save progress to localStorage
+        function saveProgress(courseName, progressPercentage) {
+            const courseProgress = JSON.parse(localStorage.getItem("courseProgress")) || {};
+            courseProgress[courseName] = progressPercentage;
+            localStorage.setItem("courseProgress", JSON.stringify(courseProgress));
+        }
+    </script>
+</body>
+</html>

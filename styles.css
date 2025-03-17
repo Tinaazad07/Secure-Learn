@@ -1,0 +1,423 @@
+/*Home Page*/
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(90deg, #004aad, #cb6ce6);
+    color: #fff;
+    padding: 20px 0;
+}
+
+header h1 { 
+    display: block;
+    font-size: 2em;
+    margin: 0; /* Removes extra spacing */
+    font-weight: bold;
+  }
+
+header h3 { 
+    display: block;
+    font-size: 1.3em;
+    margin: 0; /* Removes extra spacing */
+    font-weight: bold;
+  }  
+
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffdd57;
+}
+
+nav ul li a.active {
+    font-weight: bold;
+    border-bottom: 2px solid #ffdd57;
+}
+
+/* Hero Section */
+#hero {
+    background: url('images/background.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+#hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.btn {
+    background: #ffdd57;
+    color: #333;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #ffc107;
+}
+
+/* Features Section */
+#features {
+    padding: 50px 0;
+    background: #fff;
+    text-align: center;
+}
+
+#features h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.feature-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Footer Styles */
+footer {
+    background: linear-gradient(90deg, #004aad, #cb6ce6);
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/*Courses Page*/
+/* Courses Section */
+#courses {
+    padding: 50px 0;
+    background: #fff;
+    text-align: center;
+}
+
+#courses h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.course-card {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.course-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #0078d4;
+}
+
+.course-card p {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.course-card .btn {
+    background: #0078d4;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.course-card .btn:hover {
+    background: #005bb5;
+}
+
+/* About Page */
+/* About Section */
+#about {
+    padding: 50px 0;
+    background: #fff;
+    text-align: left;
+}
+
+#about h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.about-section {
+    margin-bottom: 40px;
+}
+
+.about-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #0078d4;
+}
+
+.about-section p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-section ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.about-section ul li {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Password Security page */
+/* Password Strength Meter */
+.password-meter {
+    margin-bottom: 30px;
+}
+
+#password-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#password-strength {
+    height: 10px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#password-strength div {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+#password-feedback {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+
+/*malware page*/
+/* Malware Identification Game */
+.malware-game {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+#malware-items, #malware-targets {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.malware-item, .target {
+    padding: 10px;
+    background-color: #0078d4;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.target {
+    background-color: #f4f4f4;
+    color: #333;
+    border: 2px dashed #0078d4;
+}
+
+/* Game Result */
+#game-result {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/*Email security page*/
+/* Phishing Email Exercise */
+.phishing-exercise {
+    margin-bottom: 30px;
+}
+
+.email {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+}
+
+.email-link {
+    color: #0078d4;
+    text-decoration: none;
+}
+
+.email-link:hover {
+    text-decoration: underline;
+}
+
+/* Exercise Result */
+#exercise-result {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+
+/* Login/Sign Up Section */
+#login-signup {
+    padding: 50px 0;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white overlay */
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-box {
+    background: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+}
+
+.form-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #0078d4;
+}
+
+.form-box label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.form-box input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-box .btn {
+    width: 100%;
+    background: #0078d4;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.form-box .btn:hover {
+    background: #005bb5;
+}
+
+/* Error Messages */
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    text-align: center;
+}
