@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<manifest identifier="00" version="1" xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2" xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+    <adlcp:location>metadata.xml</adlcp:location>
+  </metadata>
+  <organizations default="editor.exportDialog.defaults.authorName">
+    <organization identifier="editor.exportDialog.defaults.authorName">
+      <title>Email Security</title>
+      <item identifier="item_00" identifierref="resource_00">
+        <title>Email Security</title>
+        <adlcp:masteryscore>0</adlcp:masteryscore>
+        <metadata>
+          <schema>ADL SCORM</schema>
+          <schemaversion>1.2</schemaversion>
+          <adlcp:location>metadata.xml</adlcp:location>
+        </metadata>
+      </item>
+      <metadata>
+        <schema>ADL SCORM</schema>
+        <schemaversion>1.2</schemaversion>
+        <adlcp:location>metadata.xml</adlcp:location>
+      </metadata>
+    </organization>
+  </organizations>
+  <resources>
+    <metadata>
+      <schema>ADL SCORM</schema>
+      <schemaversion>1.2</schemaversion>
+      <adlcp:location>metadata.xml</adlcp:location>
+    </metadata>
+    <resource identifier="resource_00" type="webcontent" href="index.html" adlcp:scormtype="sco">
+      <metadata>
+        <schema>ADL SCORM</schema>
+        <schemaversion>1.2</schemaversion>
+        <adlcp:location>metadata.xml</adlcp:location>
+      </metadata>
+      <file href="SCORM_API_wrapper.js"/>
+      <file href="h5p-adaptor.js"/>
+      <file href="images/file--28Hm4oFmbXmbq7d.png"/>
+      <file href="images/file-1Ue8_YjPgw4juqTm.png"/>
+      <file href="images/file-Ctsil2Lt7AIoZeIR.png"/>
+      <file href="images/file-K7XEaDPPyukQqfWb.png"/>
+      <file href="images/file-OM-tm9GweBj2xbKi.png"/>
+      <file href="images/file-RCeF0f0oZZm3P-iy.png"/>
+      <file href="images/file-XxlHqpZRx0UM7M1T.png"/>
+      <file href="images/file-cidwunKdlR1aqr2N.png"/>
+      <file href="images/file-fPGglJi-qMZGF0Ca.png"/>
+      <file href="images/file-jCuqBd0HocoifSDt.png"/>
+      <file href="images/file-pPtsK3aFOPgIyhon.png"/>
+      <file href="images/file-t3JBhu5P0PpI_w3b.png"/>
+      <file href="images/file-uCwb7mybq4ohThYG.png"/>
+      <file href="index.html"/>
+    </resource>
+  </resources>
+</manifest>
